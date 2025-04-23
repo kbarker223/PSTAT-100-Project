@@ -1,0 +1,87 @@
+---
+title: 'Final Project - Step 1 (8 Points)'
+subtitle: "PSTAT100: Data Science Concepts and Analysis" 
+
+author:
+    affiliations:
+      - name: "Spring 2025"
+affiliation-title: "Quarter"
+format: 
+ pdf: 
+    latex_engine: xelatex
+    geometry: "letterpaper, margin=0.3in"
+    code-fold: true
+    code-line-numbers: true
+    code-copy: true
+    code-tools: true
+    self-contained: true
+    toc: false
+    toc-location: left
+    number-sections: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message =  FALSE)
+knitr::opts_chunk$set(warning =  FALSE)
+knitr::opts_chunk$set(error =  FALSE)
+bfcolor <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{\\textbf{%s}}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'><b>%s</b></span>", color, x)
+  } else x
+}
+```
+
+:::{.callout-caution}
+# Due Date
+The deadline for this step is Friday, April 25.
+:::
+
+:::callout
+# Formation of groups:
+<div style="text-align: center">
+<span style="color: blue;"> **The Academy**</span> 
+</div>
+- Luke Drushell    (A063N84)
+- STUDENT 2    (NetID 2)
+- STUDENT 3    (NetID 3)
+- STUDENT 4    (NetID 4)
+- STUDENT 5    (NetID 5)
+- STUDENT 6    (NetID 6)
+:::
+
+ 
+
+
+
+# Tentative Role Distribution Table
+
+| Name                 | Responsibilities                                           |
+|-----------------------|-----------------------------------------------------------|
+ |STUDENT 1 | Leader and Project Manager | 
+ |STUDENT 2 | Scribe |
+ |STUDENT 3 | Data Mapper 1 |
+ |STUDENT 4 | Data Mapper 2 |
+ |STUDENT 5 | Comms and Scheduling |
+ |STUDENT 6 | Data Cleaner and Reorganizer |
+
+# Data Information
+
+  **Data Name/Title**: *Top 10,000 Popular Movies TMDB*
+  
+  **Author/Owner**: *Mahesh Jadev*
+  
+  **Date of Publication**: *June 13, 2023*
+  
+  **Publication Venue**: *Kaggle*
+  
+  **Retrieval Date**: *April 22, 2025*
+ 
+  **Link**: *https://www.kaggle.com/datasets/ursmaheshj/top-10000-popular-movies-tmdb-05-2023*
+
+
+# Initial Insights:
+`r bfcolor("The data actually appears to be fairly cleaned already, with little null or NA values. This makes quite a lot of sense, as it is a list of the most popular movies on TheMovieDataBase, which is a well respected and popular movie info crowdsourcing service.", "red")` \
+
+
+
