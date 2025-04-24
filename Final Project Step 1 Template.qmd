@@ -44,7 +44,7 @@ The deadline for this step is Friday, April 25.
 </div>
 - Luke Drushell    (A063N84)
 - David Pacheco    (5127683)
-- STUDENT 3    (NetID 3)
+- Rafael Romero    (3519758)
 - STUDENT 4    (NetID 4)
 - STUDENT 5    (NetID 5)
 - STUDENT 6    (NetID 6)
@@ -81,7 +81,7 @@ The deadline for this step is Friday, April 25.
 
 
 # Initial Insights:
-`r bfcolor("The data actually appears to be fairly cleaned already, with little null or NA values. This makes quite a lot of sense, as it is a list of the most popular movies on TheMovieDataBase, which is a well respected and popular movie info crowdsourcing service.", "red")` \
+`r bfcolor("The data appears to be fairly cleaned already, with few null or NA values. This makes quite a lot of sense, as it is a list of the most popular movies on TheMovieDataBase, which is a well-respected and popular movie info crowdsourcing service.", "red")` \
 
 
 
