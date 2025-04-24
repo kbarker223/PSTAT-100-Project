@@ -43,7 +43,7 @@ The deadline for this step is Friday, April 25.
 <span style="color: blue;"> **The Academy**</span> 
 </div>
 - Luke Drushell    (A063N84)
-- STUDENT 2    (NetID 2)
+- David Pacheco    (5127683)
 - STUDENT 3    (NetID 3)
 - STUDENT 4    (NetID 4)
 - STUDENT 5    (NetID 5)
