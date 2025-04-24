@@ -58,12 +58,12 @@ The deadline for this step is Friday, April 25.
 
 | Name                 | Responsibilities                                           |
 |-----------------------|-----------------------------------------------------------|
- |STUDENT 1 | Leader and Project Manager | 
- |STUDENT 2 | Scribe |
- |STUDENT 3 | Data Mapper 1 |
- |STUDENT 4 | Data Mapper 2 |
- |STUDENT 5 | Comms and Scheduling |
- |STUDENT 6 | Data Cleaner and Reorganizer |
+ | Rafael | Leader and Project Manager | 
+ | Layla | Scribe |
+ | Davian | Data Mapper 1 |
+ | Luke | Data Mapper 2 |
+ | David | Comms and Scheduling |
+ | Kai | Data Cleaner and Reorganizer |
 
 # Data Information
 
