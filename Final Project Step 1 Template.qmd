@@ -42,7 +42,7 @@ The deadline for this step is Friday, April 25.
 <div style="text-align: center">
 <span style="color: blue;"> **The Academy**</span> 
 </div>
-- Luke Drushell    (A063N84)
+- Luke Drushell    (drushell)
 - David Pacheco    (5127683)
 - Rafael Romero    (romeroflores)
 - Kai Barker       (kaibarker)
