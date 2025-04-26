@@ -46,7 +46,7 @@ The deadline for this step is Friday, April 25.
 - David Pacheco    (dpacheco)
 - Rafael Romero    (romeroflores)
 - Kai Barker       (kaibarker)
-- STUDENT 5    (NetID 5)
+- Diana Lee   (dianadlee)
 - STUDENT 6    (NetID 6)
 :::
 
@@ -59,7 +59,7 @@ The deadline for this step is Friday, April 25.
 | Name                 | Responsibilities                                           |
 |-----------------------|-----------------------------------------------------------|
  | Rafael | Leader and Project Manager | 
- | Layla | Scribe |
+ | Diana | Scribe |
  | Davian | Data Mapper 1 |
  | Luke | Data Mapper 2 |
  | David | Comms and Scheduling |
