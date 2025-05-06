@@ -38,11 +38,12 @@ bfcolor <- function(x, color) {
 <div style="text-align: center">
 <span style="color: blue;"> **STUDENT NAME **</span> 
 </div>
-- STUDENT 1    (NetID 1)
-- STUDENT 2    (NetID 2)
-- STUDENT 3    (NetID 3)
-- STUDENT 4    (NetID 4)
-- STUDENT 5    (NetID 5)
+- Luke Drushell    (drushell)
+- David Pacheco    (dpacheco)
+- Rafael Romero    (romeroflores)
+- Kai Barker       (kaibarker)
+- Diana Lee        (dianadlee)
+- Davian Valencia  (davianvalencia)
 :::
 
 
