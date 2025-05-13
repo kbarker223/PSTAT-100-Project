@@ -145,52 +145,65 @@ dataset %>%
 
 ## Data Visualization
 
-Since the vote_average variable provides some of the most meaningful data, we can explore its distribution and relationship with other variables to better understand viewer preferences and trends.
+Since the vote_average variable provides some of the most meaningful data, providing valuable insight into audiences feelings on the movie, we will make several visual plots so we can explore its distribution and relationship with other variables to better understand viewer preferences and trends.
 
-First, we can explore the distribution of the vote average over all the movies in the dataset. Reminder, the variable is already keeping track of the average rating of each movie, not the average number of votes. 
+First, we can explore the distribution of the vote average over all the movies in the dataset. As a reminder, the variable is the average rating of each movie, not the average number of votes. 
 
 ```{r}
+#| echo: false
 library(ggplot2)
 
 ggplot(dataset, aes(x=vote_average)) +
   geom_histogram(bins=50, fill="maroon", color="black")+
   labs(title="Histogram of Vote Averages",
-       x="Score",
+       x="Average Rating",
        y="Frequency") 
 ```
+We can observe that the distribution of the vote averages looks approximately normal, which is further evidenced by the large sample size (~10,000) and the central limit theorem. Interestingly, there is a large cluster of movies with an average rating of 0.0. This could be due to relevancy of the movie, where few people have cared to rate it, lack of data due to the release date of the movie, genuine dislike of the movie, or some other error. Most likely it is due to an error or lack of data for the movies rating, since any actual value of 0.0 would be nearly impossible unless it lacked a single rating. As discussed previously, these could be omitted when exploring the relationship between vote average and other variables.
 
-...
-Explore relationship between vote avg and genre and budget
-...
+Now that we have an idea of how the vote average variable looks and how it is distributed, we can explore some of its relationships with other variables in the dataset. One relationship that could be interesting to explore is the average ratings by genre. We can model this relationship with a set of boxplots, each representing a genre, ordered by median average rating (as boxplots are centered about the median), with the boxes themselves modeling the middle 50\% of the data, and the whiskers indicating the spread of the non-boxed values.
 ```{r}
+#| echo: false
 library(tidyverse)
-
 #first we need to get all the individual genres
 #genres are like tags so some movies have multiple 
-#genres
+#genres (also removed vote avg of 0 as discussed before)
 genre_sep <- dataset %>%
   mutate(genres = str_remove_all(genres, "\\[|\\]|'")) %>%
-  separate_rows(genres, sep=",\\s*")
+  separate_rows(genres, sep=",\\s*") %>%
+  filter(genres != "", vote_average != 0) %>%
+  group_by(median(vote_average))
 
-na.omit(genre_sep)
+#for some reason, only 2 rows in the seperated dataset were NA
+genre_sep <- na.omit(genre_sep)
 
-ggplot(genre_sep, aes(x=vote_average, y=genres, color = genres)) +
+#want to reorder so that we can can easier tell the smallest to largest median values
+genre_sep <- genre_sep %>%
+  mutate(genres = fct_reorder(genres, vote_average, .fun = median, .desc = TRUE))
+
+ggplot(genre_sep, aes(x=vote_average, y=genres, fill = genres)) +
   geom_boxplot() +
-  labs(title="Boxplots for Vote Average by Genre", 
-       x="Score",
-       y="Genre")
+  labs(title="Boxplots for Average Rating by Genre", 
+       x="Average Rating",
+       y="Genre") +
+  theme(legend.position = "none")
 ```
+From our boxplots, we can observe that the smallest median vote average comes from Horror movies, and the largest from Documentaries. While this may make more or less sense depending on personal opinions, Horror movies and Documentaries might tend to have more polarizing opinions, where documentaries might appeal to larger audiences, or audiences that were already interested in the movie, depending on the subject covered, and Horror movies might receive less praise if people are turned off by their gory nature. 
 
+Another relationship that could be important to explore is that between the vote average and budget of the movies. While budget should not inherently increase the quality of the movie, it should eliminate some aspects that could lower ratings, such as production, camera quality, visual effects, and the level of the cast afforded. We can model this relationship with a scatter plot
 ```{r}
-dataset
-library(corrplot)
-ggplot(dataset, aes(x=vote_average, y=budget/(1000000))) +
-  geom_point() +
-  labs
+#| echo: false
+##filter vote avg of 0 out
+data_wo_zeros <- dataset %>%
+  filter(vote_average != 0, budget != 0)
 
-buget_vote <- matrix()
-corrplot::corrplot(cor(dataset$vote_average, dataset$budget), method="circle")
+ggplot(data_wo_zeros, aes(x=vote_average, y=budget/(1000000))) +
+  geom_point(alpha=0.075) +
+  labs(title="Average Rating vs. Movie Budget",
+       x="Average Rating",
+       y="Budget (Millions)")
 ```
+Values in the scatterplot have had their opacity turned down to better highlight large clusters of data. The scatterplot might not be the best method of analyzing this relationship as the vast number of datapoints leads to more clutter. However, we can observe that a majority of movies, regardless of budget seem to fall between an average rating of 5-7.5. Further, most of the movies appear to have a budget of about 50 million or less. We can also observe that the movie with the largest budget, around 450 million, does not have the highest average rating, and there is a large amount of movies with a low budget that are mixed in with the cluster of the 5-7.5 vote average. It would appear that the movies with the highest average rating have a budget of around 100 million dollars. To make a better conclusion about the relationship between budget and ratings, further statistical analysis would be warranted.
 
 
 
