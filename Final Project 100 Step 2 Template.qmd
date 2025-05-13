@@ -1,7 +1,6 @@
 ---
 title: 'Final Project - Step 2 (15 Points)'
 subtitle: "PSTAT100: Data Science Concepts and Analysis" 
-
 author:
     affiliations:
       - name: "Spring 2025"
@@ -18,7 +17,11 @@ format:
     toc: false
     toc-location: left
     number-sections: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message =  FALSE)
 knitr::opts_chunk$set(warning =  FALSE)
@@ -32,64 +35,72 @@ bfcolor <- function(x, color) {
 }
 ```
 
-
-
-:::callout
-<div style="text-align: center">
-<span style="color: blue;"> **STUDENT NAMES **</span> 
-</div>
-- Luke Drushell    (drushell)
-- David Pacheco    (dpacheco)
-- Rafael Romero    (romeroflores)
-- Kai Barker       (kaibarker)
-- Diana Lee        (dianadlee)
-- Davian Valencia  (davianvalencia)
+:::: callout
+::: {style="text-align: center"}
+[ **STUDENT NAMES** ]{style="color: blue;"}
 :::
 
+-   Luke Drushell (drushell)
+-   David Pacheco (dpacheco)
+-   Rafael Romero (romeroflores)
+-   Kai Barker (kaibarker)
+-   Diana Lee (dianadlee)
+-   Davian Valencia (davianvalencia)
+::::
 
-::: {.callout-caution}
+::: callout-caution
 ## Due Date
+
 The deadline for this step is **Friday, May 9, 2025**.
 :::
 
-
-:::{.callout-tip}
+::: callout-tip
 # Instructions
-In this step, you will develop clear research questions and hypotheses based on your selected dataset, and conduct a thorough Exploratory Data Analysis (EDA). This foundational work is crucial for guiding your analysis in the following steps.
 
+In this step, you will develop clear research questions and hypotheses
+based on your selected dataset, and conduct a thorough Exploratory Data
+Analysis (EDA). This foundational work is crucial for guiding your
+analysis in the following steps.
 :::
 
 # Step 2: Research Questions, Hypotheses, and Exploratory Data Analysis (EDA)
 
-
 ## Research Questions
 
-**Question 1**
-How are genres linked to the vote_average of movies? And does release year play a measurable role?
+**Question 1** How are genres linked to the vote_average of movies? And
+does release year play a measurable role?
 
-**Question 2**
-Are movies getting longer as time goes on? Does this affect any aspect of the movie? (ex: ratings and revenue)
+**Question 2** Are movies getting longer as time goes on? Does this
+affect any aspect of the movie? (ex: ratings and revenue)
 
-**Question 3**
-Does the budget of the movie affect how good it is. In other words, is the average rating affected by the movies budget.
+**Question 3** Does the budget of the movie affect how good it is. In
+other words, is the average rating affected by the movies budget.
 
 ## Hypotheses
 
-**Hypothesis 1**
-Movies are becoming more popular but less liked: As year goes up popularity goes up proportionally, but vote average drops. Maybe this is only in action/adventure genres, whereas comedies/romances/dramas the opposite might be seen.
+**Hypothesis 1** Movies are becoming more popular but less liked: As
+year goes up popularity goes up proportionally, but vote average drops.
+Maybe this is only in action/adventure genres, whereas
+comedies/romances/dramas the opposite might be seen.
 
-**Hypothesis 2**
-Despite the shorter attention span of our generation, movies have been slowly increasing runtime, which has been seen to increase the ratings and revenue of a movie.
+**Hypothesis 2** Despite the shorter attention span of our generation,
+movies have been slowly increasing runtime, which has been seen to
+increase the ratings and revenue of a movie.
 
-**Hypothesis 3**
-While users rating or a movies quality is not always a reflection of how much money was spent, a higher budget should afford better actors, better production, etc and should lead to an overall better movie in some aspects. 
-
+**Hypothesis 3** While users rating or a movies quality is not always a
+reflection of how much money was spent, a higher budget should afford
+better actors, better production, etc and should lead to an overall
+better movie in some aspects.
 
 ## Exploratory Data Analysis (EDA)
 
 ## Data Cleaning
 
-Data came relatively clean, some columns such as indices, or long descriptions are often missing so those columns will be directly removed. Finally some rows have a few zero'd values, which will be delt with on the case by case basis described in the comments. 
+Data came relatively clean, some columns such as indices, or long
+descriptions are often missing so those columns will be directly
+removed. Finally some rows have a few zero'd values, which will be delt
+with on the case by case basis described in the comments.
+
 ```{r}
 library(dplyr)
 dataset <- read.csv("top_1000_popular_movies_tmdb.csv")
@@ -114,15 +125,72 @@ cat("Rows with runtime == 0:", runtime_zeros, "\n")
 dataset <- dataset[!(dataset$runtime == 0), ]
 ```
 
-
 ## Descriptive Statistics
 
-Some things that are interesting here:
-The mean average vote is 6.395, with the 1st quartile being 6. It would be possible to filter true vote_averages of 0 from movies with no votes by simply taking taking the complement of when vote_count is 0, which may be something someone mapping votes should consider. Another interesting thing here is how low the popularity mean is -- many of the top 10,000 movies are not actually that popular compared to true blockbusters as shown with the max (Fast X). Finally, it is interesting to see how runtime cany vary: why is there a movie with a runtime of 2 minutes for instance? It appears there are a variety of short films in the top 10,000.
+Some things that are interesting here: The mean average vote is 6.395,
+with the 1st quartile being 6. It would be possible to filter true
+vote_averages of 0 from movies with no votes by simply taking taking the
+complement of when vote_count is 0, which may be something someone
+mapping votes should consider. Another interesting thing here is how low
+the popularity mean is -- many of the top 10,000 movies are not actually
+that popular compared to true blockbusters as shown with the max (Fast
+X). Finally, it is interesting to see how runtime cany vary: why is
+there a movie with a runtime of 2 minutes for instance? It appears there
+are a variety of short films in the top 10,000.
+
 ```{r}
 dataset %>%
   summary()
 ```
 
 ## Data Visualization
+
+Since the vote_average variable provides some of the most meaningful data, we can explore its distribution and relationship with other variables to better understand viewer preferences and trends.
+
+First, we can explore the distribution of the vote average over all the movies in the dataset. Reminder, the variable is already keeping track of the average rating of each movie, not the average number of votes. 
+
+```{r}
+library(ggplot2)
+
+ggplot(dataset, aes(x=vote_average)) +
+  geom_histogram(bins=50, fill="maroon", color="black")+
+  labs(title="Histogram of Vote Averages",
+       x="Score",
+       y="Frequency") 
+```
+
+...
+Explore relationship between vote avg and genre and budget
+...
+```{r}
+library(tidyverse)
+
+#first we need to get all the individual genres
+#genres are like tags so some movies have multiple 
+#genres
+genre_sep <- dataset %>%
+  mutate(genres = str_remove_all(genres, "\\[|\\]|'")) %>%
+  separate_rows(genres, sep=",\\s*")
+
+na.omit(genre_sep)
+
+ggplot(genre_sep, aes(x=vote_average, y=genres, color = genres)) +
+  geom_boxplot() +
+  labs(title="Boxplots for Vote Average by Genre", 
+       x="Score",
+       y="Genre")
+```
+
+```{r}
+dataset
+library(corrplot)
+ggplot(dataset, aes(x=vote_average, y=budget/(1000000))) +
+  geom_point() +
+  labs
+
+buget_vote <- matrix()
+corrplot::corrplot(cor(dataset$vote_average, dataset$budget), method="circle")
+```
+
+
 
