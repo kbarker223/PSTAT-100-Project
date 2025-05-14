@@ -222,3 +222,23 @@ Furthermore, this visual complements our exploration of revenue and ratings tren
 
 
 
+We can also investigate Popularity vs. Average Rating with a scatter plot. This allows us to explore whether popular movies tend to receive higher or lower ratings.
+
+```{r}
+ggplot(dataset, aes(x = popularity, y = vote_average)) +
+  geom_point(alpha = 0.6, color = "blue") +
+  labs(
+    title = "Relationship between Movie Popularity and Average Rating",
+    x = "Popularity Score",
+    y = "Average Rating (Vote Average)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title = element_text(size = 12)
+  )
+```
+
+From the plot above, we can see that there is a wide distribution of average ratings across all popularity levels. This suggests that popularity is not directly tied to higher ratings. Highly popular movies can have a wide range of ratings, from very low to very high. Some low-popularity movies have high ratings, indicating that they may be critically acclaimed but less known to the general audience. The scatter plot does not show a clear linear relationship between popularity and rating, indicating that factors other than popularity may significantly influence ratings. This visual complements our analysis of other factors like budget and run time and further highlights the complexity of predicting a movie’s quality based solely on its popularity.
+
+
