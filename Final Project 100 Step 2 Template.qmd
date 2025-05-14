@@ -261,3 +261,19 @@ ggplot(vote_data, aes(x = vote_count, y = vote_average)) +
 
 This scatter plot analyzes the correlation between the number of votes and the average rating given by votes. There are very few highly voted movies with ratings below 5 or above 9, which would be expected because of the central limit effect. There is not a strong linear relationship between the variables but it is important to see that the movies with a higher number of votes tend to land more in the moderate area when it comes to their average ratings and this is a result of the rating being drawn from more opinions.
 
+```{r}
+#| echo: false
+library(ggwordcloud)
+
+#split the genres inside the vectors in each row
+genresplit <- dataset %>% 
+  separate_rows(genres, sep = "[\\[\\]',\\s]+") %>% filter(genres != "") %>% count(genres, sort = TRUE)  
+
+#make the word cloud
+ggplot(genresplit, aes(label = genres, size = n)) +
+  geom_text_wordcloud(area_corr = TRUE) +
+  scale_size_area(max_size = 20) +
+  theme_minimal()
+```
+
+Using the word cloud above, we can visually see which genre is most popular within this data set. We can see that "Drama" is the most common movie genre, while genres, such as "Documentary" and "Western", seem as though they are least common. This tells us that within the top 1000 movies, "Drama" is the most popular. This knowledge can be then used to further analyze other variables in relation to their movie genre.
