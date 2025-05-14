@@ -208,6 +208,7 @@ Values in the scatterplot have had their opacity turned down to better highlight
 We can also investigate Budget vs. Revenue with a scatterplot. Due to the wide range of monetary values, we can apply log scales to both axes to help us visualize the pattern more clearly.
 
 ```{r}
+#| echo: false
 ggplot(dataset, aes(x = budget, y = revenue, color = vote_average)) +
   geom_point(alpha = 0.6) +
   scale_color_viridis_c() +
@@ -225,6 +226,7 @@ Furthermore, this visual complements our exploration of revenue and ratings tren
 We can also investigate Popularity vs. Average Rating with a scatter plot. This allows us to explore whether popular movies tend to receive higher or lower ratings.
 
 ```{r}
+#| echo: false
 ggplot(dataset, aes(x = popularity, y = vote_average)) +
   geom_point(alpha = 0.6, color = "blue") +
   labs(
@@ -244,6 +246,7 @@ From the plot above, we can see that there is a wide distribution of average rat
 
 Another relationship we can investigate is weather the number of votes(vote count) and average rating(vote_average) have a correlation.This can help us understand if heavily voted movies tend to be perceived better or worse by the general public.
 ```{r}
+#| echo: false
 # Filter out movies with 0 votes or 0 ratings
 vote_data <- dataset %>%
   filter(vote_count > 0, vote_average > 0)
