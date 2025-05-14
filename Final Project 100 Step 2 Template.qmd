@@ -205,5 +205,20 @@ ggplot(data_wo_zeros, aes(x=vote_average, y=budget/(1000000))) +
 ```
 Values in the scatterplot have had their opacity turned down to better highlight large clusters of data. The scatterplot might not be the best method of analyzing this relationship as the vast number of datapoints leads to more clutter. However, we can observe that a majority of movies, regardless of budget seem to fall between an average rating of 5-7.5. Further, most of the movies appear to have a budget of about 50 million or less. We can also observe that the movie with the largest budget, around 450 million, does not have the highest average rating, and there is a large amount of movies with a low budget that are mixed in with the cluster of the 5-7.5 vote average. It would appear that the movies with the highest average rating have a budget of around 100 million dollars. To make a better conclusion about the relationship between budget and ratings, further statistical analysis would be warranted.
 
+We can also investigate Budget vs. Revenue with a scatterplot. Due to the wide range of monetary values, we can apply log scales to both axes to help us visualize the pattern more clearly.
+
+```{r}
+ggplot(dataset, aes(x = budget, y = revenue, color = vote_average)) +
+  geom_point(alpha = 0.6) +
+  scale_color_viridis_c() +
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(title = "Budget vs Revenue (Colored by Vote Average)")
+```
+
+From the plot above, we can observe a clear positive correlation between budget and revenue, suggesting that movies with a higher budget tend to bring in higher revenues. However, the spread also reveals significant variability as some lower-budget films achieve substantial revenues, and some high-budget films underperform. The color gradient adds another layer of insight. While many high-revenue films also have moderate-to-high vote averages, there are notable exceptions: some well-rated movies (darker color) exist across all budget levels, indicating that critical reception (vote average) is not solely dependent on budget size.
+
+Furthermore, this visual complements our exploration of revenue and ratings trends and emphasizes the complexity in predicting movie success based on production costs alone.
+
 
 
